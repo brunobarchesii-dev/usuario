@@ -109,6 +109,19 @@ public class UsuarioConverter {
                 .build();
     }
 
+    //Metodo ternario update de Usuario
+    public Usuario updateUsuario (UsuarioDTO usuarioDTO, Usuario usuarioEntity){
+        Usuario.builder()
+                .nome(usuarioDTO.getNome() != null ? usuarioDTO.getNome() : usuarioEntity.getNome())
+                .email(usuarioDTO.getEmail() != null ? usuarioDTO.getEmail() : usuarioEntity.getEmail())
+                .senha(usuarioDTO.getSenha() != null ? usuarioDTO.getSenha() : usuarioEntity.getSenha())
+                .id(usuarioEntity.getId()) //dificilmente é mudado entao ja pego direto da entity
+                .enderecos(usuarioEntity.getEnderecos())//Aqui nesse metodo n vou mudar endereco entao pego oq ja tem
+                .telefones(usuarioEntity.getTelefones()) //Aqui nesse metodo n vou mudar telefone entao pego oq ja tem
+                .build();
+
+
+    }
 
 
 
