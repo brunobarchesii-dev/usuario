@@ -1,6 +1,6 @@
-package infrastucture.repository;
+package com.brunobarchesi.usuario.infrastucture.repository;
 
-import infrastucture.entity.Telefone;
+import com.brunobarchesi.usuario.infrastucture.entity.Telefone;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

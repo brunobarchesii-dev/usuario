@@ -1,4 +1,4 @@
-package infrastucture.security;
+package com.brunobarchesi.usuario.infrastucture.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

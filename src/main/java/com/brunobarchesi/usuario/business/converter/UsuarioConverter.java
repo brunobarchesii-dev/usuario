@@ -3,9 +3,9 @@ package com.brunobarchesi.usuario.business.converter;
 import com.brunobarchesi.usuario.business.dto.EnderecoDTO;
 import com.brunobarchesi.usuario.business.dto.TelefoneDTO;
 import com.brunobarchesi.usuario.business.dto.UsuarioDTO;
-import infrastucture.entity.Endereco;
-import infrastucture.entity.Telefone;
-import infrastucture.entity.Usuario;
+import com.brunobarchesi.usuario.infrastucture.entity.Endereco;
+import com.brunobarchesi.usuario.infrastucture.entity.Telefone;
+import com.brunobarchesi.usuario.infrastucture.entity.Usuario;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
