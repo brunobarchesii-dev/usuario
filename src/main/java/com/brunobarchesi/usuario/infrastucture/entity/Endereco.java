@@ -1,4 +1,4 @@
-package infrastucture.entity;
+package com.brunobarchesi.usuario.infrastucture.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

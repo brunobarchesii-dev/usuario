@@ -1,4 +1,4 @@
-package infrastucture.security;
+package com.brunobarchesi.usuario.infrastucture.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

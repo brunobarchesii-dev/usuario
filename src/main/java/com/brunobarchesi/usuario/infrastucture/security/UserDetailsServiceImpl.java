@@ -1,7 +1,7 @@
-package infrastucture.security;
+package com.brunobarchesi.usuario.infrastucture.security;
 
-import infrastucture.entity.Usuario;
-import infrastucture.repository.UsuarioRepository;
+import com.brunobarchesi.usuario.infrastucture.entity.Usuario;
+import com.brunobarchesi.usuario.infrastucture.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

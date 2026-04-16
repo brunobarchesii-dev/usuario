@@ -1,11 +1,10 @@
-package infrastucture.repository;
+package com.brunobarchesi.usuario.infrastucture.repository;
 
-import infrastucture.entity.Usuario;
+import com.brunobarchesi.usuario.infrastucture.entity.Usuario;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.StyledEditorKit;
 import java.util.Optional;
 
 @Repository
