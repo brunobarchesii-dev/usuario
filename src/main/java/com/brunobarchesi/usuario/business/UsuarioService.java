@@ -1,10 +1,16 @@
 package com.brunobarchesi.usuario.business;
 
 import com.brunobarchesi.usuario.business.converter.UsuarioConverter;
+import com.brunobarchesi.usuario.business.dto.EnderecoDTO;
+import com.brunobarchesi.usuario.business.dto.TelefoneDTO;
 import com.brunobarchesi.usuario.business.dto.UsuarioDTO;
+import com.brunobarchesi.usuario.infrastucture.entity.Endereco;
+import com.brunobarchesi.usuario.infrastucture.entity.Telefone;
 import com.brunobarchesi.usuario.infrastucture.entity.Usuario;
 import com.brunobarchesi.usuario.infrastucture.execeptions.ConflictExeception;
 import com.brunobarchesi.usuario.infrastucture.execeptions.ResourceNotFoundException;
+import com.brunobarchesi.usuario.infrastucture.repository.EnderecoRepository;
+import com.brunobarchesi.usuario.infrastucture.repository.TelefoneRepository;
 import com.brunobarchesi.usuario.infrastucture.repository.UsuarioRepository;
 import com.brunobarchesi.usuario.infrastucture.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +25,8 @@ public class UsuarioService {
     private final UsuarioConverter usuarioConverter;
     private final PasswordEncoder passwordEncoder; //Injecao para criptografia de senha
     private final JwtUtil jwtUtil;
-
+    private final EnderecoRepository enderecoRepository;
+    private final TelefoneRepository telefoneRepository;
 
 
 
@@ -57,11 +64,16 @@ public class UsuarioService {
 
 
 
-    //trazer usuario por email:
-    public Usuario buscaUsuarioPorEmail(String email){
-        return usuarioRepository.findByEmail(email).orElseThrow(() ->
-                new ResourceNotFoundException("Email nao encontrado" + email));
-        //orElseThrow é um jeito de usar try-catch de uma forma diferente.
+    //trazer usuarioDTO por email:
+    public UsuarioDTO buscaUsuarioPorEmail(String email){
+        try {
+            return usuarioConverter.paraUsuarioDTO(usuarioRepository.findByEmail(email).orElseThrow(() ->
+                    new ResourceNotFoundException("Email nao encontrado" + email)));
+        }
+        catch (ResourceNotFoundException e){
+            throw new ResourceNotFoundException("Email nao encontrado" + email);
+        }
+                //orElseThrow é um jeito de usar try-catch de uma forma diferente.
     }
 
 
@@ -75,6 +87,10 @@ public class UsuarioService {
 
 
 
+/// ////////    ///////////         /////////////////////////       /////////////////       /////////
+
+
+                        //SESSAO DE ATUALIZAR DADOS: USUARIO, TELEFONE, ENDERECO:
 
 
     //Atualizar dados de usuario:
@@ -93,6 +109,41 @@ public class UsuarioService {
         return usuarioConverter.paraUsuarioDTO(usuarioRepository.save(usuario));
 
     }
+
+
+
+
+
+
+    //atualizar endereco:
+    public EnderecoDTO atualizarEndereco(Long idEndereco, EnderecoDTO enderecoDTO){
+        Endereco entity = enderecoRepository.findById(idEndereco).orElseThrow(()->
+                new ResourceNotFoundException("Endereco nao encontrado"));
+
+       Endereco endereco = usuarioConverter.atualizarEndereco(enderecoDTO, entity);
+
+        return usuarioConverter.paraEnderecoDTO(enderecoRepository.save(endereco));
+
+    }
+
+
+
+
+
+    //atualizar telefone:
+    public TelefoneDTO atualizarTelefone(Long idTelefone, TelefoneDTO telefoneDTO){
+        Telefone entity = telefoneRepository.findById(idTelefone).orElseThrow(() ->
+                new ResourceNotFoundException("Telefone nao encontrato"));
+
+        Telefone telefone = usuarioConverter.atualizarTelefone(telefoneDTO, entity);
+
+        return usuarioConverter.paraTelefoneDTO(telefoneRepository.save(telefone));
+
+    }
+
+
+
+
 
 
 }

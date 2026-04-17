@@ -1,8 +1,9 @@
 package com.brunobarchesi.usuario.controller;
 
 import com.brunobarchesi.usuario.business.UsuarioService;
+import com.brunobarchesi.usuario.business.dto.EnderecoDTO;
+import com.brunobarchesi.usuario.business.dto.TelefoneDTO;
 import com.brunobarchesi.usuario.business.dto.UsuarioDTO;
-import com.brunobarchesi.usuario.infrastucture.entity.Usuario;
 import com.brunobarchesi.usuario.infrastucture.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,10 @@ public class UsuarioController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
 
+
+
+
+                        //metodos de cadastro, login, delete e get:
 
     //metodo de cadastro de usuario
     @PostMapping
@@ -49,7 +54,7 @@ public class UsuarioController {
 
 
     @GetMapping
-    public ResponseEntity<Usuario> buscarUsuarioPorEmail(@RequestParam("email") String email){
+    public ResponseEntity<UsuarioDTO> buscarUsuarioPorEmail(@RequestParam("email") String email){
         return ResponseEntity.ok(usuarioService.buscaUsuarioPorEmail(email));
         //Esse metodo de obter Usuario por email é passado pelo parametro chamado email na url com o email
         }
@@ -67,10 +72,12 @@ public class UsuarioController {
         }
 
 
+        /// ///////////////////////////////                 ////////////////////////////////////
 
 
 
 
+                //ATUALIZACOES DE USUARIO, TELEFONE E ENDERECOS:
 
     //atualizando dados de usuario, menos endereco e telefone:
     @PutMapping
@@ -81,6 +88,24 @@ public class UsuarioController {
         }
 
 
+
+    //Atualizar endereco:
+    @PutMapping("/endereco")
+    public ResponseEntity<EnderecoDTO> atualizarEndereco(@RequestBody EnderecoDTO enderecoDTO,
+                                                         @RequestParam("id") Long id){
+        return ResponseEntity.ok(usuarioService.atualizarEndereco(id, enderecoDTO));
+
+    }
+
+
+
+    //Atualizar Telefone:
+    @PutMapping("/telefone")
+    public ResponseEntity<TelefoneDTO> atualizarTelefone(@RequestBody TelefoneDTO telefoneDTO,
+                                                         @RequestParam("id") Long id) {
+        return ResponseEntity.ok(usuarioService.atualizarTelefone(id, telefoneDTO));
+
+    }
 
 
 
