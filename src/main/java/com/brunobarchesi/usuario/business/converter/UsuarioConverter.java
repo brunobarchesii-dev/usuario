@@ -158,5 +158,21 @@ public class UsuarioConverter {
 
 
 
+    //METODO DE UPDATE DE USUARIO, SEM MEXER EM ENDERECOS E TELEFONES:
+    public Usuario updateUsuario(UsuarioDTO usuarioDTO, Usuario usuario){
+        return Usuario.builder()
+                .nome(usuarioDTO.getNome() != null ? usuarioDTO.getNome() : usuario.getNome())
+                .email(usuarioDTO.getEmail() != null ? usuarioDTO.getEmail() : usuario.getEmail())
+                .senha(usuarioDTO.getSenha() != null ? usuarioDTO.getSenha() : usuario.getSenha())
+                .enderecos(usuario.getEnderecos())
+                .telefones(usuario.getTelefones())
+                .build();
+
+        //Utilizei operador ternario IF, se for diferente de null o dto passo, ou seja, o usuario atualizou tal dado
+        //atualiza, se o dto passado no campo for null o usuario n quer atualizar esse campo entao puxa
+        //o valor da entity mesmo.
+    }
+
+
 
 }

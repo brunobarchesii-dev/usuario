@@ -66,5 +66,28 @@ public class UsuarioController {
             //Nesse metodo deleto o usuario passando na url /usuario/email@dealguem com o verbo DELETE http.
         }
 
+
+
+
+
+
+
+    //atualizando dados de usuario, menos endereco e telefone:
+    @PutMapping
+    public ResponseEntity<UsuarioDTO> atualizadoDadoUsuario(@RequestBody UsuarioDTO usuarioDTO,
+                                                            @RequestHeader ("Authorization") String token){
+        return ResponseEntity.ok(usuarioService.atualizaDadosUsuario(token, usuarioDTO));
+        //o RequestHeader diz que vou passar o token via header chamado authorization
+        }
+
+
+
+
+
+
+
+
+
+
     }
 
