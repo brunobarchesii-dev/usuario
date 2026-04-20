@@ -212,12 +212,45 @@ public class UsuarioConverter {
                 .ddd(telefoneDTO.getDdd() != null ? telefoneDTO.getDdd() : telefone.getDdd())
                 .numero(telefoneDTO.getNumero() != null ? telefoneDTO.getNumero() : telefone.getNumero())
                 .build();
+    }
 
 
+
+
+
+
+    //Metodo para transformar um enderecoDTO em entity para cadastro:
+    public Endereco paraEnderecoEntity(EnderecoDTO enderecoDTO, Long idUsuario){
+        return Endereco.builder()
+                .cidade(enderecoDTO.getCidade())
+                .rua(enderecoDTO.getRua())
+                .complemento(enderecoDTO.getComplemento())
+                .cep(enderecoDTO.getCep())
+                .numero(enderecoDTO.getNumero())
+                .estado(enderecoDTO.getEstado())
+                .usuario_id(idUsuario)
+                .build();
+    }
+
+
+
+
+
+
+    //Metodo para trasnformar telefonedto em entity para cadastro:
+    public Telefone paraTelefoneEntity (TelefoneDTO telefoneDTO, Long idUusario){
+        return  Telefone.builder()
+                .numero(telefoneDTO.getNumero())
+                .ddd(telefoneDTO.getDdd())
+                .usuario_id(idUusario)
+                .build();
 
 
 
     }
+
+
+
 
 
 }
