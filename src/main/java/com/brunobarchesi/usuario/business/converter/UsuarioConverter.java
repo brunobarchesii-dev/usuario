@@ -16,14 +16,15 @@ public class UsuarioConverter {
 
 
     //DETALHE: PARA USAR O BUILDER MARQUEI AS ENTITYS COM @BUILDER
+
     public Usuario paraUsuario(UsuarioDTO usuarioDTO){
         return Usuario.builder()
                 .nome(usuarioDTO.getNome())
                 .email(usuarioDTO.getEmail())
                 .senha(usuarioDTO.getSenha())
-                .enderecos(paraListaEndereco(usuarioDTO.getEnderecosDTO())) //preciso criar metodo
+                .enderecos(usuarioDTO.getEnderecosDTO() != null ? paraListaEndereco(usuarioDTO.getEnderecosDTO()) : null) //preciso criar metodo
                 //conersor da lista de enderecos primeiro, esta abaixo
-                .telefones(paraListaTelefone(usuarioDTO.getTelefonesDTO()))//preciso criar metodo
+                .telefones(usuarioDTO.getTelefonesDTO() != null ? paraListaTelefone(usuarioDTO.getTelefonesDTO()) : null)//preciso criar metodo
                 //conersor da lista de telefones primeiro, esta abaixo
 
                 .build();
@@ -98,9 +99,9 @@ public class UsuarioConverter {
                 .nome(usuario.getNome())
                 .email(usuario.getEmail())
                 .senha(usuario.getSenha())
-                .enderecosDTO(paraListaEnderecoDTO(usuario.getEnderecos())) //preciso criar metodo
+                .enderecosDTO(usuario.getEnderecos() != null ? paraListaEnderecoDTO(usuario.getEnderecos()) : null) //preciso criar metodo
                 //conersor da lista de enderecos primeiro, esta abaixo
-                .telefonesDTO(paraListaTelefoneDTO(usuario.getTelefones()))//preciso criar metodo
+                .telefonesDTO(usuario.getTelefones() != null ? paraListaTelefoneDTO(usuario.getTelefones()) : null)//preciso criar metodo
                 //conersor da lista de telefones primeiro, esta abaixo
 
                 .build();
