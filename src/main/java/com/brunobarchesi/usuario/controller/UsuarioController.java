@@ -35,7 +35,7 @@ public class UsuarioController {
 
 
 
-
+    //ESTUDAR MAIS ESSE METODO E REVISAR ESSA PARTE DE SEGURANCA
     //Metodo de login, verificacao
     @PostMapping("/login")//metodo que vai tratar requisicoes POST body no /usuario/login
     public String login (@RequestBody UsuarioDTO usuarioDto){
