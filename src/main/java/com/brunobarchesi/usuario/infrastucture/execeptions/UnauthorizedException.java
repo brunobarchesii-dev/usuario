@@ -1,7 +1,14 @@
 package com.brunobarchesi.usuario.infrastucture.execeptions;
 
-public class UnauthorizedException extends RuntimeException {
-  public UnauthorizedException(String message) {
-    super(message);
-  }
+import org.springframework.security.core.AuthenticationException;
+
+public class UnauthorizedException extends AuthenticationException {
+
+    public UnauthorizedException(String message) {
+        super(message);
+    }
+
+    public UnauthorizedException(String message, Throwable causa){
+        super(message, causa);
+    }
 }
