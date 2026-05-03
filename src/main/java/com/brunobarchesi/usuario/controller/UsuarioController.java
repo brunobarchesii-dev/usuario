@@ -1,9 +1,11 @@
 package com.brunobarchesi.usuario.controller;
 
 import com.brunobarchesi.usuario.business.UsuarioService;
+import com.brunobarchesi.usuario.business.ViaCepService;
 import com.brunobarchesi.usuario.business.dto.EnderecoDTO;
 import com.brunobarchesi.usuario.business.dto.TelefoneDTO;
 import com.brunobarchesi.usuario.business.dto.UsuarioDTO;
+import com.brunobarchesi.usuario.infrastucture.clients.ViaCepDTO;
 import com.brunobarchesi.usuario.infrastucture.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
+    private final ViaCepService viaCepService;
 
 
 
@@ -128,12 +131,14 @@ public class UsuarioController {
                                          @RequestHeader("Authorization") String token){
             return ResponseEntity.ok(usuarioService.cadastrarTelefone(telefoneDTO, token));
 
-
     }
 
 
-
-
+    //VIACEP:
+    @GetMapping("/endereco/{cep}")
+    public ResponseEntity<ViaCepDTO> obterEnderecoPorCep(@PathVariable("cep") String cep){
+            return ResponseEntity.ok(viaCepService.buscarCEP(cep));
+    }
 
 
 
