@@ -191,6 +191,7 @@ public class UsuarioConverter {
     //METODO PARA ATUALIZAR ENDERECO:
     public Endereco atualizarEndereco(EnderecoDTO enderecoDTO, Endereco endereco){
         return Endereco.builder()
+                .usuario_id(endereco.getUsuario_id())
                 .id(endereco.getId())
                 .rua(enderecoDTO.getRua() != null ? enderecoDTO.getRua() : endereco.getRua())
                 .estado(enderecoDTO.getEstado() != null ? enderecoDTO.getEstado() : endereco.getEstado())
@@ -210,6 +211,7 @@ public class UsuarioConverter {
     public Telefone atualizarTelefone (TelefoneDTO telefoneDTO, Telefone telefone){
         return Telefone.builder()
                 .id(telefone.getId())
+                .usuario_id(telefone.getUsuario_id())
                 .ddd(telefoneDTO.getDdd() != null ? telefoneDTO.getDdd() : telefone.getDdd())
                 .numero(telefoneDTO.getNumero() != null ? telefoneDTO.getNumero() : telefone.getNumero())
                 .build();
